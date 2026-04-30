@@ -1,0 +1,201 @@
+% =====================================================================
+%  Standard-Präambel für Skripte und Aufgabensammlungen
+%  Gymnasium Baden-Württemberg, Bildungsplan 2016
+%
+%  Verwendung:  \input{latex-praeambel.tex}  oder Inhalt direkt einfügen
+%  Engine:      pdflatex (zwei Durchläufe für Inhaltsverzeichnis)
+%               XeLaTeX nur bei Bedarf (fontspec/Spezialfonts)
+% =====================================================================
+
+\documentclass[11pt,a4paper,parskip=half]{scrartcl}
+
+% --- Sprache & Eingabe ----------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[ngerman]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% --- Mathematik -----------------------------------------------------
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{cancel}                  % \cancel für Kürzen
+\usepackage{siunitx}                 % \SI, \num, \si — deutsche Konvention
+\sisetup{
+  output-decimal-marker = {,},       % Komma statt Punkt
+  per-mode              = symbol,    % m/s statt m·s^{-1}
+  range-phrase          = {\,bis\,},
+  list-final-separator  = { und },
+  group-separator       = {\,},      % 10 000 mit schmalem Leerzeichen
+}
+
+% --- Layout ---------------------------------------------------------
+\usepackage[a4paper,left=2.4cm,right=2.4cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{enumitem}
+\setlist{topsep=2pt,itemsep=2pt}
+\usepackage{array,booktabs,longtable,tabularx,multicol}
+\usepackage{ragged2e}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = mainblue,
+  urlcolor   = mainblue,
+  citecolor  = mainblue,
+}
+
+% --- Grafik ---------------------------------------------------------
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{
+  patterns, arrows.meta, calc, positioning,
+  decorations.pathreplacing, decorations.markings,
+  intersections, angles, quotes, 3d
+}
+
+% --- Chemie (nur einbinden, wenn benötigt) --------------------------
+% \usepackage[version=4]{mhchem}     % Reaktionsgleichungen: \ce{H2O}
+% \usepackage{chemfig}               % Strukturformeln
+% \setatomsep{1.8em}
+% \setbondoffset{1pt}
+% \setdoublesep{0.45ex}
+
+% =====================================================================
+%  Farbschema (Kleeblatt-Konvention für Skripte)
+% =====================================================================
+\usepackage{xcolor}
+\definecolor{mainblue}   {RGB}{ 0, 90,160}   % Definitionen, Hauptfarbe
+\definecolor{darkblue}   {RGB}{ 0, 50,100}
+\definecolor{exgreen}    {RGB}{ 34,120, 67}  % Beispiele
+\definecolor{aufgorange} {RGB}{210,120, 20}  % Aufgaben
+\definecolor{loesgray}   {RGB}{ 90, 90, 90}  % Lösungen
+\definecolor{hinwyellow} {RGB}{200,160,  0}  % Hinweise
+\definecolor{stolperred} {RGB}{180, 40, 40}  % Stolperfallen
+\definecolor{tipppurple} {RGB}{120, 40,140}  % Klausurtipps
+\definecolor{lighgray}   {RGB}{245,245,245}
+
+% =====================================================================
+%  Boxen-Umgebungen (tcolorbox)
+% =====================================================================
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{theorems, skins, breakable}
+
+% --- Definition / Merksatz ------------------------------------------
+\newtcolorbox{definition}[1][Definition]{%
+  enhanced, breakable,
+  colback=mainblue!7, colframe=mainblue,
+  fonttitle=\bfseries,
+  title=#1,
+  attach boxed title to top left={yshift=-2mm,xshift=4mm},
+  boxed title style={colback=mainblue,colframe=mainblue},
+  arc=2pt, top=3mm, bottom=2mm
+}
+
+% --- Beispiel mit Musterlösung --------------------------------------
+\newtcolorbox{beispiel}[1][Beispiel]{%
+  enhanced, breakable,
+  colback=exgreen!7, colframe=exgreen,
+  fonttitle=\bfseries,
+  title=#1,
+  attach boxed title to top left={yshift=-2mm,xshift=4mm},
+  boxed title style={colback=exgreen,colframe=exgreen},
+  arc=2pt, top=3mm, bottom=2mm
+}
+
+% --- Übungsaufgabe --------------------------------------------------
+\newtcolorbox{aufgabe}[1][Aufgabe]{%
+  enhanced, breakable,
+  colback=aufgorange!8, colframe=aufgorange,
+  fonttitle=\bfseries,
+  title=#1,
+  attach boxed title to top left={yshift=-2mm,xshift=4mm},
+  boxed title style={colback=aufgorange,colframe=aufgorange},
+  arc=2pt, top=3mm, bottom=2mm
+}
+
+% --- Lösung ---------------------------------------------------------
+\newtcolorbox{loesung}[1][Lösung]{%
+  enhanced, breakable,
+  colback=lighgray, colframe=loesgray,
+  fonttitle=\bfseries,
+  title=#1,
+  attach boxed title to top left={yshift=-2mm,xshift=4mm},
+  boxed title style={colback=loesgray,colframe=loesgray},
+  arc=2pt, top=3mm, bottom=2mm
+}
+
+% --- Allgemeiner Hinweis --------------------------------------------
+\newtcolorbox{hinweis}[1][Hinweis]{%
+  enhanced, breakable,
+  colback=hinwyellow!10, colframe=hinwyellow,
+  fonttitle=\bfseries,
+  title=#1,
+  attach boxed title to top left={yshift=-2mm,xshift=4mm},
+  boxed title style={colback=hinwyellow,colframe=hinwyellow},
+  arc=2pt, top=3mm, bottom=2mm
+}
+
+% --- Stolperfalle (typischer Klausurfehler) -------------------------
+\newtcolorbox{stolperfalle}[1][Stolperfalle]{%
+  enhanced, breakable,
+  colback=stolperred!8, colframe=stolperred,
+  fonttitle=\bfseries\color{white},
+  title=#1,
+  attach boxed title to top left={yshift=-2mm,xshift=4mm},
+  boxed title style={colback=stolperred,colframe=stolperred},
+  arc=2pt, top=3mm, bottom=2mm
+}
+
+% --- Klausurtipp ----------------------------------------------------
+\newtcolorbox{klausurtipp}[1][Klausurtipp]{%
+  enhanced, breakable,
+  colback=tipppurple!8, colframe=tipppurple,
+  fonttitle=\bfseries\color{white},
+  title=#1,
+  attach boxed title to top left={yshift=-2mm,xshift=4mm},
+  boxed title style={colback=tipppurple,colframe=tipppurple},
+  arc=2pt, top=3mm, bottom=2mm
+}
+
+% =====================================================================
+%  Sonstige Konventionen
+% =====================================================================
+\renewcommand{\vec}[1]{\boldsymbol{#1}}        % Vektoren fett statt Pfeil
+% Alternative: \renewcommand{\vec}[1]{\overrightarrow{#1}}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+% Endergebnis einrahmen (für Aufgabenlösungen)
+\newcommand{\ergebnis}[1]{\boxed{\;#1\;}}
+
+% Kurzbefehl für Bildungsplan-Code-Verweise
+\newcommand{\bpref}[1]{\textit{(Bildungsplan #1)}}
+
+% =====================================================================
+%  Kopf- und Fußzeile (optional, hier aktiv)
+% =====================================================================
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\itshape\leftmark}
+\fancyhead[R]{\small Klasse 10 -- Gymnasium BW}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% =====================================================================
+%  Beginn des Dokuments
+% =====================================================================
+\begin{document}
+
+% \title{...}
+% \author{...}
+% \date{\today}
+% \maketitle
+% \tableofcontents
+% \newpage
+
+% --- Inhalt hier einfügen ---
+
+\end{document}
