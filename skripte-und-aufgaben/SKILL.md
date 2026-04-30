@@ -5,6 +5,15 @@ description: Erstellt umfangreiche Lernskripte und Aufgabensammlungen als kompil
 
 # Skripte und Aufgabensammlungen — Gymnasium BW
 
+> **Hinweis an Claude:** Wenn dieser Skill aus GitHub geladen wurde, sind die unten erwähnten Referenzdateien unter folgenden Raw-URLs abrufbar (per `web_fetch`):
+>
+> - LaTeX-Standardpräambel: <https://raw.githubusercontent.com/WoAnDo/claude_skills/main/skripte-und-aufgaben/references/latex-praeambel.tex>
+> - Bildungsplan-Übersicht: <https://raw.githubusercontent.com/WoAnDo/claude_skills/main/skripte-und-aufgaben/references/bildungsplan-bw-klasse10.md>
+> - Fachspezifische Pakete und Konventionen: <https://raw.githubusercontent.com/WoAnDo/claude_skills/main/skripte-und-aufgaben/references/fachspezifika.md>
+> - Leitfaden für Aufgabensammlungen: <https://raw.githubusercontent.com/WoAnDo/claude_skills/main/skripte-und-aufgaben/references/aufgabensammlung-leitfaden.md>
+>
+> Diese Referenzen erst dann nachladen, wenn sie für die konkrete Aufgabe gebraucht werden — nicht alle auf Vorrat.
+
 Dieser Skill bündelt die Konventionen für Lernskripte und Aufgabensammlungen, wie Wolfgang sie für seinen Kontext (Klasse 10 Gymnasium Baden-Württemberg) nutzt.
 
 ## Zwei Hauptproduktarten
@@ -40,10 +49,10 @@ Wenn Wolfgang nur "erstell mir ein Skript zu X" sagt, kurz klären (oder begrün
 Wenn Wolfgang Aufschriebe als PDF hochlädt: **immer zuerst lesen** (mit dem `pdf-reading`-Skill), bevor das Skript geschrieben wird. Niemals "drüber-schreiben" mit allgemeinem Lehrbuchwissen.
 
 ### Schritt 2: Bildungsplan-Abgleich
-Bei Themenwahl oder Lerninhalt-Fragen ggf. den **Bildungsplan 2016** unter `https://www.bildungsplaene-bw.de/` konsultieren (per `web_fetch`). Siehe `references/bildungsplan-bw-klasse10.md` für die aufschlüsselten Standardthemen.
+Bei Themenwahl oder Lerninhalt-Fragen ggf. den **Bildungsplan 2016** unter `https://www.bildungsplaene-bw.de/` konsultieren (per `web_fetch`). Die aufschlüsselten Standardthemen stehen in `bildungsplan-bw-klasse10.md` (siehe Raw-URL oben).
 
 ### Schritt 3: LaTeX-Präambel verwenden
-Die Standard-Präambel mit allen Boxen und Farben liegt in `references/latex-praeambel.tex`. **Diese Präambel ist die Referenz für alle Skripte** — keine Box-Stile neu erfinden, keine Farben improvisieren. Konsistenz über alle Dokumente hinweg ist gewünscht.
+Die Standard-Präambel mit allen Boxen und Farben liegt in `latex-praeambel.tex` (siehe Raw-URL oben). **Diese Präambel ist die Referenz für alle Skripte** — keine Box-Stile neu erfinden, keine Farben improvisieren. Konsistenz über alle Dokumente hinweg ist gewünscht.
 
 Die Präambel enthält fertige tcolorbox-Umgebungen für:
 - `definition` (blau) — für Definitionen, Sätze, Merksätze
@@ -55,10 +64,10 @@ Die Präambel enthält fertige tcolorbox-Umgebungen für:
 - `klausurtipp` (lila) — für strategische Tipps
 
 ### Schritt 4: Fachspezifische Pakete & Konventionen
-Siehe `references/fachspezifika.md` für die je nach Fach benötigten Pakete (chemfig, mhchem, siunitx, pgfplots) und übliche Skizzen (Wurfparabel, Reaktionsgleichungen, Vektorzeichnungen).
+Siehe `fachspezifika.md` (Raw-URL oben) für die je nach Fach benötigten Pakete (chemfig, mhchem, siunitx, pgfplots) und übliche Skizzen (Wurfparabel, Reaktionsgleichungen, Vektorzeichnungen).
 
 ### Schritt 5: Aufgaben-Design
-Siehe `references/aufgabensammlung-leitfaden.md`:
+Siehe `aufgabensammlung-leitfaden.md` (Raw-URL oben):
 - Schwierigkeitsstaffelung (Grundlagen → Anwendung → Transfer/Sachaufgabe)
 - Skizzen so oft wie möglich (TikZ inline)
 - Lösungen *immer* mit Zwischenschritten, nicht nur Endergebnis
